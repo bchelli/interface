@@ -1,0 +1,13 @@
+{
+  "name": "interface",
+  "description": "",
+  "version": "0.0.1",
+  "main": "interface.js",
+  "devDependencies": {
+    "chai": "*",
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  }
+}
