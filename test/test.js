@@ -25,7 +25,7 @@ describe('Interface Constructor', function () {
     }).to.not.throw(Error);
   });
 
-  it('should throw an error if a wrong type is pass to the constructor', function () {
+  it('should     throw an error if a wrong type is pass to the constructor', function () {
     expect(function(){
       new Interface("A damn string");
     }).to.throw(Error);
@@ -40,7 +40,7 @@ describe('Interface Constructor', function () {
  */
 describe('Interface implement on a wrong type', function () {
 
-  it('should throw an error if wrong type pass to implement', function () {
+  it('should     throw an error if wrong type pass to implement', function () {
     var DummyClass = "A damn string";
     expect(function(){
       MyInterface.implement(DummyClass);
@@ -56,14 +56,14 @@ describe('Interface implement on a wrong type', function () {
  */
 describe('Interface implement on a Class', function () {
 
-  it('should throw an error if a function is missing', function () {
+  it('should     throw an error if a function is missing', function () {
     var DummyClass = function(){};
     expect(function(){
       MyInterface.implement(DummyClass);
     }).to.throw(Error);
   });
 
-  it('should throw an error if a function does not have the right number of arguments', function () {
+  it('should     throw an error if a function does not have the right number of arguments', function () {
     var DummyClass = function(){};
     DummyClass.prototype.fnNoParam = function(){};
     DummyClass.prototype.fnOneParam = function(){};
@@ -90,14 +90,46 @@ describe('Interface implement on a Class', function () {
  */
 describe('Interface implement on an Object', function () {
 
-  it('should throw an error if a function is missing', function () {
+  var MyInterface = new Interface({
+        string  : 'a string'
+      , number  : 3
+      , array   : []
+      , object  : {}
+      , fnNoParam : function(){}
+      , fnOneParam : function(toto){}
+      })
+    ;
+
+  it('should     throw an error if a member is missing', function () {
     var DummyClass = {};
     expect(function(){
       MyInterface.implement(DummyClass);
     }).to.throw(Error);
   });
 
-  it('should throw an error if a function does not have the right number of arguments', function () {
+  it('should     throw an error if a variable is missing', function () {
+    var DummyClass = {
+      fnNoParam : function(){}
+    , fnOneParam : function(firstParam){}
+    };
+    expect(function(){
+      MyInterface.implement(DummyClass);
+    }).to.throw(Error);
+  });
+
+  it('should     throw an error if a function is missing', function () {
+    var DummyClass = {
+      string  : 'a string'
+    , number  : 3
+    , array   : []
+    , object  : {}
+    };
+    expect(function(){
+      MyInterface.implement(DummyClass);
+    }).to.throw(Error);
+  });
+
+  it('should     throw an error if a function does not have the right number of arguments', function () {
     var DummyClass = {
       fnNoParam : function(){}
     , fnOneParam : function(){}
@@ -109,7 +141,11 @@ describe('Interface implement on an Object', function () {
 
   it('should not throw an error if the interface is rightly implemented', function () {
     var DummyClass = {
-      fnNoParam : function(){}
+      string  : 'a string'
+    , number  : 3
+    , array   : []
+    , object  : {}
+    , fnNoParam : function(){}
     , fnOneParam : function(firstParam){}
     };
     expect(function(){
@@ -118,3 +154,4 @@ describe('Interface implement on an Object', function () {
   });
 
 });
+
