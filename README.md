@@ -1,6 +1,6 @@
 # interface
 
-[![Build Status](https://secure.travis-ci.org/benjaminchelli/interface.png?branch=master)](http://travis-ci.org/benjaminchelli/interface)
+[![Build Status](https://secure.travis-ci.org/bchelli/interface.png?branch=master)](http://travis-ci.org/bchelli/interface)
 
 
 ## Installation
